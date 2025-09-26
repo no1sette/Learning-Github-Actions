@@ -11,7 +11,7 @@ jobs:
                   node-version: "22"
             - run: npm install -g bats
             - run: bats -v
-    check-k6-version:
+    run-k6-script:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v5
@@ -22,3 +22,21 @@ jobs:
             - run: sudo apt-get install -y k6
             - run: k6 version
             - run: k6 run test-script.js
+    run-jmeter-script:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v5
+            - name: Set up JDK 11
+              uses: actions/setup-java@v3
+              with:
+                  distribution: "temurin"
+                  java-version: "11"
+            - name: Download Apache JMeter
+              run: |
+                  wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.5.tgz
+                  tar -xvzf apache-jmeter-5.5.tgz
+            - name: Run JMeter Test Plan
+              run: |
+                  ./apache-jmeter-5.5/bin/jmeter -n -t Open Model Thread Group.jmx -l results.jtl
+            - name: Display JMeter Results
+              run: cat results.jtl
