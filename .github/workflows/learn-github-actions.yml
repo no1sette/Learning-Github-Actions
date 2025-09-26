@@ -21,7 +21,4 @@ jobs:
             - run: sudo apt-get update
             - run: sudo apt-get install -y k6
             - run: k6 version
-    run-k6-test:
-        runs-on: ubuntu-latest
-        steps:
             - run: k6 run test-script.js
