@@ -1,6 +1,14 @@
 name: learn-github-actions
 run-name: ${{ github.actor}} is learning github actions
-on: [push, pull_request]
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+    schedule:
+        - cron: "0 0 * * 1-5" # every midnight every day Mon-Fri
 jobs:
     check-bats-version:
         runs-on: ubuntu-latest

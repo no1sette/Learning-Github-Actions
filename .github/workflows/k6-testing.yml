@@ -1,6 +1,14 @@
 name: practice-k6-action
 run-name: ${{ github.actor}} is practicing k6 action
-on: [push, pull_request]
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+    schedule:
+        - cron: "0 0 * * 1-5" # every midnight every day Mon-Fri
 jobs:
     run-k6-script:
         runs-on: ubuntu-latest

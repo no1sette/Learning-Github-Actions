@@ -1,6 +1,14 @@
 name: practice-jmeter-action
 run-name: ${{ github.actor}} is practicing jmeter action
-on: [push, pull_request]
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+    schedule:
+        - cron: "0 0 * * 1-5" # every midnight every day Mon-Fri
 jobs:
     run-jmeter-script:
         runs-on: ubuntu-latest
