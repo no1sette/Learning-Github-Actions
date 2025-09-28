@@ -14,7 +14,7 @@ on:
             lrc_output_dir:
                 description: "Directory to save LoadRunner Cloud results"
                 required: false
-                default: "lrc_report"
+                default: "./lrc_report"
 jobs:
     run-loadrunner-script:
         runs-on: ubuntu-latest
