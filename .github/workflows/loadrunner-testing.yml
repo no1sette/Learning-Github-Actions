@@ -31,11 +31,11 @@ jobs:
                   lrc_tenant: "756449080"
                   lrc_project: "1"
                   lrc_test_id: "1"
-                  lrc_output_dir: ${{github.event.input.lrc_output_dir}}
+                  lrc_output_dir: lrc_report
             - name: Print test Run ID
               run: echo "Test Run ID is ${{ steps.lrc_run_test.outputs.test_run_id }}"
             - name: Updload LRC Results
               uses: actions/upload-artifact@v4
               with:
                   name: lrc-report-${{ steps.lrc_run_test.outputs.test_run_id     }}
-                  path: ${{github.event.input.lrc_output_dir}}
+                  path: lrc_report
